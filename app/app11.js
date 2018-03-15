@@ -1,4 +1,18 @@
-var myProj1 = angular.module('myProj1',[]);
+var myProj1 = angular.module('myProj1',['ngRoute']);
+
+myProj1.config(['$routeProvider', function($routeProvider){
+  $routeProvider
+  .when('/home', {
+    templateUrl: 'views/home.html'
+  })
+  .when('/list', {
+    templateUrl: "views/list.html",
+    controller: "MyProj1Controller"
+  }).otherwise({
+    redirectTo: '/home'
+  });
+
+}]);
 
 myProj1.controller('MyProj1Controller', ['$scope', function($scope){
 
@@ -28,7 +42,8 @@ myProj1.controller('MyProj1Controller', ['$scope', function($scope){
       level: 2,
       cost: 200,
       active: true,
-      marking: 'black'
+      marking: 'black',
+      thumb: 'content/img/swimming.png'
     },
 
     {
@@ -36,7 +51,8 @@ myProj1.controller('MyProj1Controller', ['$scope', function($scope){
       level: 1,
       cost: 150,
       active: true,
-      marking: 'green'
+      marking: 'green',
+      thumb: 'content/img/badminton.png'
     },
 
     {
@@ -44,7 +60,8 @@ myProj1.controller('MyProj1Controller', ['$scope', function($scope){
       level: 2,
       cost: 200,
       active: false,
-      marking: 'blue'
+      marking: 'blue',
+      thumb: 'content/img/tennis.png'
     },
 
     {
@@ -52,15 +69,17 @@ myProj1.controller('MyProj1Controller', ['$scope', function($scope){
       level: 3,
       cost: 300,
       active: true,
-      marking: 'orange'
+      marking: 'orange',
+      thumb: 'content/img/marathon.png'
     },
 
     {
       name: 'basketball',
       level: 4,
       cost: 500,
-      active:false,
-      marking: 'green'
+      active:true,
+      marking: 'green',
+      thumb: 'content/img/basketball.png'
     }
 
   ];
