@@ -1,4 +1,4 @@
-var myProj1 = angular.module('myProj1',['ngRoute']);
+var myProj1 = angular.module('myProj1',['ngRoute', 'ngAnimate']);
 
 myProj1.config(['$routeProvider', function($routeProvider){
   $routeProvider
@@ -7,11 +7,29 @@ myProj1.config(['$routeProvider', function($routeProvider){
     controller: 'MyProj1Controller'
   })
   .when('/list', {
-    templateUrl: 'views/list.html',
-    controller: 'MyProj1Controller'
+    templateUrl: "views/list.html",
+    controller: "MyProj1Controller"
   }).otherwise({
     redirectTo: '/home'
   });
+
+}]);
+
+myProj1.directive('randomSport',[function(){
+
+  return {
+    restrict: 'E',
+    scope: {
+      sports: '=',
+      title: '='
+    },
+    templateUrl: '../views/random.html',
+    transclude: true,
+    replace: true, //to replace the customed directive random-sport with div in random.html
+    controller: function($scope){
+      $scope.random = Math.floor(Math.random()*5);
+    },
+  };
 
 }]);
 
@@ -35,6 +53,10 @@ myProj1.controller('MyProj1Controller', ['$scope','$http', function($scope, $htt
     $scope.newsport.level = "";
     $scope.newsport.cost = "";
     $scope.newsport.marking = "";
+  }
+
+  $scope.removeAll = function(){
+    $scope.sports = [];
   }
 
   // the following are all converted to JSON and saved in external file sports.json

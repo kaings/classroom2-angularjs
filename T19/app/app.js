@@ -7,11 +7,29 @@ myProj1.config(['$routeProvider', function($routeProvider){
     controller: 'MyProj1Controller'
   })
   .when('/list', {
-    templateUrl: 'views/list.html',
-    controller: 'MyProj1Controller'
+    templateUrl: "views/list.html",
+    controller: "MyProj1Controller"
   }).otherwise({
     redirectTo: '/home'
   });
+
+}]);
+
+myProj1.directive('randomSport',[function(){
+
+  return {
+    restrict: 'E',
+    scope: {
+      sports: '=',
+      title: '='
+    },
+    templateUrl: '../views/random.html',
+    transclude: true,
+    replace: true, //to replace the customed directive random-sport with div in random.html
+    controller: function($scope){
+      $scope.random = Math.floor(Math.random()*5);
+    },
+  };
 
 }]);
 
